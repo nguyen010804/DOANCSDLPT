@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 # DOANCSDLPT
-=======
+
 # Hệ Thống Xác Thực Tái Tạo Dữ Liệu Viễn Thông Xe (Vehicle Telemetry)
 
 Hệ thống mô phỏng quá trình phân mảnh dữ liệu (Data Fragmentation) và xác thực kịch bản tái cấu trúc không mất mát thông tin (Lossless Join/Reconstruction) đối với dữ liệu nhật ký hành trình xe thông minh.
@@ -50,4 +49,3 @@ Sau khi thực thi tệp tin `vehicle_telemetry_final.py`, hệ thống tự đ�
     python vehicle_telemetry_final.py
     ```
 4.  Sau khi màn hình Terminal hiển thị bảng báo cáo phân tích chi tiết và danh sách 5 dòng bị lỗi, hãy kiểm tra thư mục `output/` vừa được sinh ra để xem toàn bộ các file dữ liệu phân mảnh dạng `.csv`.
->>>>>>> 3065f15 (update)
