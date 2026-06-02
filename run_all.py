@@ -50,7 +50,7 @@ def main():
     print("     fragments/vertical/V_*.csv        ← 2 mảnh dọc")
     print("     fragments/horizontal/*CORRUPTED*  ← Mảnh H2 bị hỏng")
     print("     data/deleted_rows_log.csv         ← Log 5 dòng bị xóa")
-    print("     reports/reconstruction_report.txt ← Báo cáo tái cấu trúc")
+    print("     reports/reports/reconstruction_report.txt ← Báo cáo tái cấu trúc")
 
 if __name__ == "__main__":
     main()

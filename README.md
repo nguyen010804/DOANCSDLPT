@@ -15,20 +15,22 @@ Script tự động phân mảnh dữ liệu, giả lập sự cố mất dữ l
 ## Cách chạy
 
 ```bash
-python vehicle_telemetry_final.py
+python run_all.py
 ```
 
-Kết quả tự động lưu vào thư mục `output/` được tạo cùng thư mục.
+Kết quả tạo ra các file trong thư mục `data/`, `fragments/` và `reports/`.
+
+> Lưu ý: nếu muốn import dữ liệu vào SQL Server, dùng `python step5_import_to_sqlserver.py` và cài `pandas`, `pyodbc`.
 
 ---
 
 ## Tập dữ liệu
 
-Bảng `VehicleLogs` — **10.000 dòng × 6 cột**, mỗi dòng là 1 lần ghi nhật ký xe cách nhau 1 phút.
+Bảng `VehicleLogs` — **10.000 dòng × 6 cột**, mỗi dòng là 1 lần ghi nhật ký xe cách nhau **3 phút**.
 
 | Cột | Kiểu | Mô tả |
 |-----|------|-------|
-| `Timestamp` | DATETIME | Thời điểm ghi (từ 2024-01-01, cách nhau 1 phút) |
+| `Timestamp` | DATETIME | Thời điểm ghi (từ 2024-01-01, cách nhau 3 phút) |
 | `VIN` | VARCHAR(10) | Số nhận dạng xe — khóa chính |
 | `Speed` | INT (0–180) | Tốc độ (km/h) |
 | `FuelLevel` | FLOAT (5–100) | Nhiên liệu còn lại (%) |
@@ -120,16 +122,24 @@ H4: JOIN = 2.500 / 2.500  →  THÀNH CÔNG
 
 ---
 
-## Cấu trúc output/
+## Cấu trúc kết quả
 
 ```
-output/
-├── VehicleLogs_original.csv          ← Dữ liệu gốc 10.000 dòng
-├── H1.csv / H2.csv / H3.csv / H4.csv ← 4 mảnh ngang
-├── H2_damaged.csv                    ← H2 sau khi mất 5 dòng
-├── H1_V1_operational.csv             ← Mảnh dọc: vận hành
-├── H1_V2_diagnostic.csv              ← Mảnh dọc: chẩn đoán
-└── ... (tương tự cho H2, H3, H4)
+data/
+├── VehicleLogs.csv                   ← Dữ liệu gốc 10.000 dòng
+├── deleted_rows_log.csv              ← Log 5 dòng bị xóa
+fragments/
+├── horizontal/
+│   ├── H1_VIN_A.csv
+│   ├── H2_VIN_B.csv
+│   ├── H2_VIN_B_CORRUPTED.csv
+│   ├── H3_VIN_C.csv
+│   └── H4_VIN_D.csv
+└── vertical/
+    ├── V_Operational.csv
+    └── V_Diagnostic.csv
+reports/
+└── reconstruction_report.txt
 ```
 
 ---
